@@ -8,7 +8,4 @@ public class Vector {
         this.k = k;
     }
 
-    public static String getSymbol() {
-        return "*";
-    }
 }
