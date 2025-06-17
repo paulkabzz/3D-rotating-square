@@ -8,41 +8,34 @@ public class InfiniteRotationDemo {
         System.out.println("Press Ctrl+C to stop");
         System.out.println();
         
-        // Start infinite rotation
         infiniteRotation(surface);
     }
     
     public static void infiniteRotation(Surface surface) {
-        double angleStep = Math.PI / 30; // Small incremental steps for smooth animation
+        double angleStep = Math.PI / 30; 
         double currentAngle = 0;
         
         while (true) {
-            // Clear screen (works on most terminals)
             clearScreen();
             
-            // Update rotation angles - rotate around multiple axes for more interesting effect
-            double angleX = currentAngle * 0.7;  // Different speeds for each axis
+            double angleX = currentAngle * 0.7;  
             double angleY = currentAngle * 1.0;
             double angleZ = currentAngle * 0.5;
             
             surface.setRotationAngles(angleX, angleY, angleZ);
             
-            // Draw the rotated surface with 3D projection
             draw3DProjection(surface);
             
-            // Show current angles
             System.out.printf("Rotation: X=%.1f° Y=%.1f° Z=%.1f°\n", 
                             Math.toDegrees(angleX) % 360,
                             Math.toDegrees(angleY) % 360, 
                             Math.toDegrees(angleZ) % 360);
             
-            // Increment angle
             currentAngle += angleStep;
             if (currentAngle > 2 * Math.PI) {
-                currentAngle = 0; // Reset to avoid overflow
+                currentAngle = 0; 
             }
             
-            // Delay for animation effect
             try {
                 Thread.sleep(100); // 100ms delay = ~10 FPS
             } catch (InterruptedException e) {
@@ -57,40 +50,33 @@ public class InfiniteRotationDemo {
         int screenHeight = 30;
         char[][] screen = new char[screenHeight][screenWidth];
         
-        // Initialize screen with spaces
         for (int i = 0; i < screenHeight; i++) {
             for (int j = 0; j < screenWidth; j++) {
                 screen[i][j] = ' ';
             }
         }
         
-        // Create 3D points for the surface
         int surfaceSize = surface.getWidth();
-        double scale = 2.0; // Scale factor for visibility
+        double scale = 2.0; 
         
         for (int i = 0; i < surfaceSize; i++) {
             for (int j = 0; j < surfaceSize; j++) {
-                // Create a 3D point
                 Vector point = new Vector(
                     (i - surfaceSize/2.0) * scale,
                     (j - surfaceSize/2.0) * scale,
                     0
                 );
                 
-                // Apply rotation
                 Vector rotated = surface.rotateVector(point);
                 
-                // Project to 2D screen coordinates (simple orthographic projection)
                 int screenX = (int)(rotated.i + screenWidth/2);
                 int screenY = (int)(rotated.j + screenHeight/2);
                 
-                // Check bounds and plot
                 if (screenX >= 0 && screenX < screenWidth && 
                     screenY >= 0 && screenY < screenHeight) {
                     screen[screenY][screenX] = '█';
                 }
                 
-                // Add some 3D depth by drawing additional points
                 for (int depth = -2; depth <= 2; depth++) {
                     Vector depthPoint = new Vector(
                         (i - surfaceSize/2.0) * scale,
@@ -116,7 +102,6 @@ public class InfiniteRotationDemo {
             }
         }
         
-        // Draw the screen
         for (int i = 0; i < screenHeight; i++) {
             for (int j = 0; j < screenWidth; j++) {
                 System.out.print(screen[i][j]);
@@ -126,25 +111,17 @@ public class InfiniteRotationDemo {
     }
     
     public static void clearScreen() {
-        // ANSI escape codes to clear screen and move cursor to top
         System.out.print("\033[2J\033[H");
         System.out.flush();
-        
-        // Alternative method for systems that don't support ANSI
-        // Print multiple newlines to simulate clearing
-        // for (int i = 0; i < 50; i++) {
-        //     System.out.println();
-        // }
+
     }
     
-    // Alternative infinite rotation with different patterns
     public static void infiniteRotationWithPattern(Surface surface) {
         double time = 0;
         
         while (true) {
             clearScreen();
             
-            // Create interesting rotation patterns
             double angleX = Math.sin(time * 0.5) * Math.PI / 4;
             double angleY = time;
             double angleZ = Math.cos(time * 0.3) * Math.PI / 6;
@@ -164,14 +141,12 @@ public class InfiniteRotationDemo {
         }
     }
     
-    // Bouncing rotation animation
     public static void bouncingRotation(Surface surface) {
         double time = 0;
         
         while (true) {
             clearScreen();
             
-            // Bouncing effect using sine waves
             double bounce = Math.sin(time * 2) * Math.PI / 3;
             double spin = time * 2;
             

@@ -6,7 +6,11 @@ public static void main(String[] args) {
     Surface surface = new Surface(origin, "@", 18);
     
     // Choose one:
-    ASCIIRotationVariants.classicASCIIRotation(surface);
+    SmoothASCIIRotation.ultraSmoothRotation(surface);
+    // ASCIIRotationVariants.classicASCIIRotation(surface);
+    // SmoothASCIIRotation.ultraSmoothRotation(surface);
+    // SmoothASCIIRotation.interpolatedRotation(surface);
+    // SmoothASCIIRotation.highFPSWaveRotation(surface);
     // ASCIIRotationVariants.denseCharacterRotation(surface);
     // ASCIIRotationVariants.wavePatternRotation(surface);
     // ASCIIRotationVariants.spiralRotation(surface);

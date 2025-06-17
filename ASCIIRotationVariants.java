@@ -2,8 +2,8 @@ public class ASCIIRotationVariants {
     
     private static final char[] DEPTH_CHARS_CLASSIC = {'@', '#', '*', '+', '=', '-', ':', '.', ' '};
     private static final char[] DEPTH_CHARS_DENSE = {'@', '&', '#', '*', '%', '+', '=', '-', ':', '.', ' '};
-    private static final char[] DEPTH_CHARS_SIMPLE = {'@', '*', '+', '.', ' '};
-    private static final char[] DEPTH_CHARS_MODERN = {'#', '@', '*', '&', '%', '+', '=', '-', '~', '.', ' '};
+    // private static final char[] DEPTH_CHARS_SIMPLE = {'@', '*', '+', '.', ' '};
+    // private static final char[] DEPTH_CHARS_MODERN = {'#', '@', '*', '&', '%', '+', '=', '-', '~', '.', ' '};
     
     public static void main(String[] args) {
         Vector origin = new Vector(0, 0, 0);
@@ -64,7 +64,7 @@ public class ASCIIRotationVariants {
             angle += Math.PI / 20;
             
             try {
-                Thread.sleep(100);
+                Thread.sleep(80);
             } catch (InterruptedException e) {
                 break;
             }
@@ -91,7 +91,7 @@ public class ASCIIRotationVariants {
             time += 0.08;
             
             try {
-                Thread.sleep(90);
+                Thread.sleep(60);
             } catch (InterruptedException e) {
                 break;
             }
@@ -188,7 +188,6 @@ public class ASCIIRotationVariants {
         
         for (int i = 0; i < surfaceSize; i++) {
             for (int j = 0; j < surfaceSize; j++) {
-                // Add wave effect based on position and time
                 double wave = Math.sin((i + j) * 0.5 + time * 3) * 2;
                 
                 Vector point = new Vector(
@@ -205,7 +204,6 @@ public class ASCIIRotationVariants {
                 if (screenX >= 0 && screenX < screenWidth && 
                     screenY >= 0 && screenY < screenHeight) {
                     
-                    // Choose character based on wave height
                     char waveChar;
                     if (wave > 1.5) waveChar = '@';
                     else if (wave > 0.5) waveChar = '#';
@@ -218,7 +216,6 @@ public class ASCIIRotationVariants {
             }
         }
         
-        // Draw the screen
         for (int i = 0; i < screenHeight; i++) {
             for (int j = 0; j < screenWidth; j++) {
                 System.out.print(screen[i][j]);
@@ -233,7 +230,6 @@ public class ASCIIRotationVariants {
         char[][] screen = new char[screenHeight][screenWidth];
         char[] spiralChars = {'@', '#', '&', '*', '%', '+', '=', '-', ':', '.', ' '};
         
-        // Initialize screen
         for (int i = 0; i < screenHeight; i++) {
             for (int j = 0; j < screenWidth; j++) {
                 screen[i][j] = ' ';
@@ -245,7 +241,6 @@ public class ASCIIRotationVariants {
         
         for (int i = 0; i < surfaceSize; i++) {
             for (int j = 0; j < surfaceSize; j++) {
-                // Create spiral effect
                 double distance = Math.sqrt((i - surfaceSize/2.0) * (i - surfaceSize/2.0) + 
                                           (j - surfaceSize/2.0) * (j - surfaceSize/2.0));
                 double spiralZ = Math.sin(distance * 0.8 + spiral) * 1.5;
@@ -270,7 +265,6 @@ public class ASCIIRotationVariants {
             }
         }
         
-        // Draw the screen
         for (int i = 0; i < screenHeight; i++) {
             for (int j = 0; j < screenWidth; j++) {
                 System.out.print(screen[i][j]);
@@ -280,7 +274,6 @@ public class ASCIIRotationVariants {
     }
     
     public static void clearScreen() {
-        // ANSI escape codes to clear screen
         System.out.print("\033[2J\033[H");
         System.out.flush();
     }

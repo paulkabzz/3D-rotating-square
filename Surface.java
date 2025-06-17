@@ -92,24 +92,6 @@ public class Surface {
         this.B = B;
         this.C = C;
     }
-
-    public void drawSurface() {
-        // Create a grid of vectors representing the surface
-        for (int i = 0; i < SURFACE_WIDTH; i++) {
-            for (int j = 0; j < SURFACE_WIDTH; j++) {
-                // Create a vector at position (i, j, 0) relative to the surface origin
-                Vector surfacePoint = new Vector(V.i + i, V.j + j, V.k);
-                
-                // Rotate the point if needed
-                Vector rotatedPoint = rotateVector(surfacePoint);
-                
-                // Here you would typically project to 2D and draw
-                // For now, just print the coordinates (you can modify this)
-                System.out.print(character);
-            }
-            System.out.println(); // New line after each row
-        }
-    }
     
     public double getVectorI() {
         return this.V.i;
